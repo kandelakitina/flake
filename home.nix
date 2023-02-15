@@ -7,7 +7,7 @@
   home.homeDirectory = "/home/boticelli";
 
   # Packages that should be installed to the user profile.
-  home.packages = with pkgs; [                               1
+  home.packages = with pkgs; [
     htop
   ];
 
