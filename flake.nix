@@ -29,6 +29,8 @@
       lib = nixpkgs.lib;
 
     in {
+      # this has to have "Configuration" in 
+      # it's name to be usable by flake
       nixosConfigurations = {
 
         # user name is used when building a flake  
