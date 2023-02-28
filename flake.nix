@@ -1,7 +1,6 @@
 {                                                                            
 
   description = "boticelli's first flake";                                        
-                                                                             
   # inputs are like channels for flake files
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-22.11";
@@ -10,7 +9,8 @@
   };
 
   # outputs is where we configure `inputs`
-  outputs = { self, nixpkgs, home-manager, ... }:
+  # outputs = { self, nixpkgs, home-manager, ... }:
+  outputs = inputs: {
 
     # define some variables for the ease of use
     let
@@ -56,4 +56,5 @@
 
         };
       };
+  };
 }   
