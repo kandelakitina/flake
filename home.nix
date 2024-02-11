@@ -8,7 +8,10 @@
 
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
-    htop
+    btop
+    lazygit
+    helix
+    firefox
   ];
 
   # This value determines the Home Manager release that your

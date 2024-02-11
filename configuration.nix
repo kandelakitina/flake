@@ -15,12 +15,7 @@ in
       ./hardware-configuration.nix
       # <home-manager/nixos>
     ];
-
-  # Use the GRUB 2 boot loader.
-  # boot.loader.grub.enable = true;
-  # boot.loader.grub.version = 2;
-  # boot.loader.grub.efiSupport = true;
-  
+ 
   # Dual boot
   boot = { 
     kernelPackages = pkgs.linuxPackages_latest;
@@ -49,12 +44,6 @@ in
     };
   };
 
-
-  # boot.loader.grub.efiInstallAsRemovable = true;
-  # boot.loader.efi.efiSysMountPoint = "/boot/efi";
-  # Define on which hard drive you want to install Grub.
-  # boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
-
   networking.hostName = "nixos"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -67,7 +56,7 @@ in
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  # TO-DO: Add russian locale
+  # TODO: Add russian locale
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
   # i18n.extraLocaleSettings = {
@@ -79,13 +68,6 @@ in
     keyMap = "us";
   #   useXkbConfig = true; # use xkbOptions in tty.
   };
-
-  # Enable the X11 windowing system.
-  # services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-  # services.xserver.displayManager.gdm.enable = true;
-  # services.xserver.desktopManager.gnome.enable = true;
 
   # Custom
   services = {
@@ -109,7 +91,6 @@ in
     # plex.enable = true;
   };
   
-
   # HARDWARE
   # --------
   # Enable CUPS to print documents.
@@ -128,11 +109,11 @@ in
   # $ nix search wget
   environment = {
     systemPackages = with pkgs; [
-      firefox
+      qutebrowser
+      curl
       git
       htop
       micro
-      neovim
       wget
     ];
     variables.EDITOR = "micro"; # sets default editor
@@ -149,34 +130,6 @@ in
     # thunderbird
     ];
   };
-
-  # Home Manager
-  # home-manager.users.${user} = { pkgs, ... }: {
-    # home.stateVersion = "${version}";
-    # home.packages = with pkgs; [
-      # bat
-      # ranger
-    # ];
-
-    # services = {
-    #   dunst.enable = true;
-    # };
-    
-    # # import dotfiles
-    # home.file.".doom.d" = {
-    #   source ./doom.d;
-    #   recursive = true;
-    #   onChange = builtins.readFile ./doom.sh;
-    # };
-    # home.file.".config/polybar/script/mic.sh" = {
-    #   source = ./mic.sh;
-    #   executable = true;
-    # };
-
-    # see https://github.com/MatthiasBenaets/nixos-config/blob/master/nixos.org#declared 
-    # for how to generate dotfiles from configuration.nix
-  # };
-
 
   nixpkgs.config.allowUnfree = true;
 
@@ -208,7 +161,7 @@ in
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -221,11 +174,6 @@ in
   # accidentally delete configuration.nix.
   # system.copySystemConfiguration = true;
 
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "${version}"; # Did you read the comment?
 
