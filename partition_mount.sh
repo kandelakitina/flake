@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Prompt user for the disk device
-read -p "Enter the disk device (e.g., sda, nvme0n1) without /dev/: " disk
+read -p "Enter the disk device (e.g., sda, nvme0n1) without /dev/. Use `lsblk` to find out: " disk
 
 # Determine if the device is NVMe
 if [[ $disk == nvme* ]]; then
