@@ -131,7 +131,7 @@ in
     ];
   };
 
-  nixpkgs.config.allowUnfree = true;
+  # nixpkgs.config.allowUnfree = true;
 
   # Auto update the system
   # system.autoUpgrade = {
