@@ -6,7 +6,7 @@
 
 let
   user = "boticelli";
-  version = "22.11";
+  version = "23.11";
 in
 
 {
