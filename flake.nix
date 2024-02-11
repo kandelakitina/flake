@@ -39,6 +39,7 @@
           modules = [
             ./configuration.nix 
 
+            # Adding home-manager as a NixOS system config module
             home-manager.nixosModules.home-manager {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
