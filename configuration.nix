@@ -115,6 +115,7 @@ in
       htop
       micro
       wget
+      helix
     ];
     variables.EDITOR = "micro"; # sets default editor
   };

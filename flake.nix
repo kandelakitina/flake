@@ -47,14 +47,27 @@
                 imports = [ ./home.nix ];
               };
             }
+        
           ];
         };
+
 
         #<second user> = lib.nixosSystem {
         #inherit system;
         #modules = [ ./configuration.nix ];
         #};
 
-        };
       };
+
+      # # This configues home-manager config
+      # # Should allow to run 'home-manager switch`
+      # # TODO: try uncommenting it with nixos-unstable in input
+      # homeConfigurations = {
+      #   ${user} = home-manager.lib.homeManagerConfiguration {
+      #     inherit pkgs;
+      #     modules = [ ./home.nix ];
+      #   };
+      # };
+
+    };
 }   

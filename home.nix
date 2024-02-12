@@ -8,10 +8,12 @@
 
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
+    home-manager
     btop
     lazygit
     helix
     firefox
+    gh
   ];
 
   # TODO: add stuff from https://nixos-and-flakes.thiscute.world/nixos-with-flakes/start-using-home-manager
