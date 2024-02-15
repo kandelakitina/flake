@@ -6,13 +6,23 @@
   home.username = "boticelli";
   home.homeDirectory = "/home/boticelli";
 
+  # Turn off versions mismatch errors
+  home.enableNixpkgsReleaseCheck = false;
+
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
-    home-manager
+    # GUI
+    alacritty
+    firefox
+    obsidian
+
+    # Utils
+    # home-manager
+
+    #cli
     btop
     lazygit
     helix
-    firefox
     gh
   ];
 

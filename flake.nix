@@ -22,8 +22,13 @@
         # takes nixpkgs path from the system
         inherit system;
 
-        # use proprietory soft
-        config.allowunfree = true;
+        # # use proprietory soft
+        config = {
+          allowUnfree = true;
+          permittedInsecurePackages = [
+            "electron-25.9.0"
+          ];
+        };
       };
 
       lib = nixpkgs.lib;

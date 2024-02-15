@@ -16,6 +16,8 @@ in
       # <home-manager/nixos>
     ];
  
+  # nixpkgs.config.allowUnfree = true;
+
   # Dual boot
   boot = { 
     kernelPackages = pkgs.linuxPackages_latest;
@@ -132,7 +134,6 @@ in
     ];
   };
 
-  # nixpkgs.config.allowUnfree = true;
 
   # Auto update the system
   # system.autoUpgrade = {
