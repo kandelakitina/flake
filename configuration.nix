@@ -117,7 +117,7 @@ in
       wget
       helix
     ];
-    variables.EDITOR = "micro"; # sets default editor
+    variables.EDITOR = "helix"; # sets default editor
   };
 
   # Define a user account. 
