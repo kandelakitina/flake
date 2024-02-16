@@ -119,7 +119,7 @@ in
       wget
       helix
     ];
-    variables.EDITOR = "helix"; # sets default editor
+    variables.EDITOR = "hx"; # sets default editor
   };
 
   # Define a user account. 

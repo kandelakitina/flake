@@ -31,19 +31,19 @@
     # entr            # Run arbitrary commands when files change
     
     # cli apps
-    bat       # better cat
-    btop      # resourese manager
+    # bat       # better cat
+    # btop      # resourese manager
     eza       # better ls
     lazygit   # git client
     helix     # editor
     gh        # github authentificator
     fd        # alternative to find
     fff       # simple file manager
-    fzf       # fuzzy finder
-    jq        # JSON formatter
+    # fzf       # fuzzy finder
+    # jq        # JSON formatter
     ripgrep   # better grep
     tree      # show file tree
-    zoxide    # easy cli files navigator with z
+    # zoxide    # easy cli files navigator with z
     zk        # note taking
     xclip     # system buffer manager
 
@@ -70,39 +70,62 @@
 
 
   # basic configuration of git, please change to your own
-  programs.git = {
-    enable = true;
-    userName = "boticelli";
-    userEmail = "kandelakitina@gmail.com";
-  };
+  programs = {
+    git = {
+      enable = true;
+      userName = "boticelli";
+      userEmail = "kandelakitina@gmail.com";
+    };
 
-  # starship - an customizable prompt for any shell
-  programs.starship = {
-    enable = true;
-    # custom settings
-    # settings = {
-    #   add_newline = false;
-    #   aws.disabled = true;
-    #   gcloud.disabled = true;
-    #   line_break.disabled = true;
-    # };
-  };
+    # Better `cd`
+    bat.enable = true;
+    # Type `z <pat>` to cd to some directory
+    zoxide.enable = true;
+    # Type `<ctrl> + r` to fuzzy search your shell history
+    fzf.enable = true;
+    jq.enable = true;
+    btop.enable = true;
+
+    fish = {
+      enable = true;
+    };
+  
+    starship = {
+      enable = true;
+      enableFishIntegration = true;
+      settings = {
+        username = {
+          style_user = "blue bold";
+          style_root = "red bold";
+          format = "[$user]($style) ";
+          disabled = false;
+          show_always = true;
+        };
+        hostname = {
+          ssh_only = false;
+          ssh_symbol = "🌐 ";
+          format = "on [$hostname](bold red) ";
+          trim_at = ".local";
+          disabled = false;
+        };
+      };
+    }; 
 
   # alacritty - a cross-platform, GPU-accelerated terminal emulator
-  programs.alacritty = {
-    enable = true;
-    # custom settings
-    settings = {
-      env.TERM = "xterm-256color";
-      font = {
-        size = 16;
-        draw_bold_text_with_bright_colors = true;
+    alacritty = {
+      enable = true;
+      # custom settings
+      settings = {
+        env.TERM = "xterm-256color";
+        font = {
+          size = 16;
+          draw_bold_text_with_bright_colors = true;
+        };
+        scrolling.multiplier = 5;
+        selection.save_to_clipboard = true;
       };
-      scrolling.multiplier = 5;
-      selection.save_to_clipboard = true;
     };
   };
-
   # programs.emacs = {
   #   enable = true;
   #   extraPackages = epkgs: [
