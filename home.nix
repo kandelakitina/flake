@@ -1,6 +1,16 @@
 { config, pkgs, ... }:
 
 {
+  imports = [
+    ./modules/alacritty.nix
+  ];
+
+  home.shellAliases = {
+    g = "git";
+    lg = "lazygit";
+    f = "fff";
+  };
+  
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "boticelli";
@@ -110,22 +120,24 @@
         };
       };
     }; 
-
-  # alacritty - a cross-platform, GPU-accelerated terminal emulator
-    alacritty = {
-      enable = true;
-      # custom settings
-      settings = {
-        env.TERM = "xterm-256color";
-        font = {
-          size = 16;
-          draw_bold_text_with_bright_colors = true;
-        };
-        scrolling.multiplier = 5;
-        selection.save_to_clipboard = true;
-      };
-    };
   };
+  # # alacritty - a cross-platform, GPU-accelerated terminal emulator
+  #   alacritty = {
+  #     enable = true;
+  #     # custom settings
+  #     settings = {
+  #       env.TERM = "xterm-256color";
+  #       font = {
+  #         size = 16;
+  #         draw_bold_text_with_bright_colors = true;
+  #       };
+  #       scrolling.multiplier = 5;
+  #       selection.save_to_clipboard = true;
+  #     };
+  #   };
+  # };
+
+  
   # programs.emacs = {
   #   enable = true;
   #   extraPackages = epkgs: [
