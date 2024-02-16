@@ -126,6 +126,7 @@ in
   # Don't forget to set a password with ‘passwd’.
   users.users.${user}= {
     isNormalUser = true;
+    shell = pkgs.fish; # set default shell
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     initialPassword = "password"; # change it with `pwd` upon restart
     packages = with pkgs; [
@@ -151,6 +152,7 @@ in
   #   };
   # };
 
+  programs.fish.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
