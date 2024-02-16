@@ -50,6 +50,8 @@
               home-manager.useUserPackages = true;
               home-manager.users.${user} = {
                 imports = [ ./home.nix ];
+                # TODO fix
+                # specialArgs = { inherit system user; };
               };
             }
         
