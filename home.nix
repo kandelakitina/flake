@@ -68,6 +68,7 @@
     # [python3]=python311
     # [python3.11-pip]=python311Packages.pip
     # [python3.11-python-lsp-server]=python311Packages.python-lsp-server
+    (nerdfonts.override { fonts = [ "Ubuntu" "UbuntuMono" ]; })
   ];
 
   # TODO: add stuff from https://nixos-and-flakes.thiscute.world/nixos-with-flakes/start-using-home-manager
@@ -137,7 +138,9 @@
   #   };
   # };
 
-  
+  # Fonts
+  fonts.fontconfig.enable = true;
+
   # programs.emacs = {
   #   enable = true;
   #   extraPackages = epkgs: [
