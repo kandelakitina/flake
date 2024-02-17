@@ -10,12 +10,8 @@
 {
   imports = [
     ./modules/alacritty.nix
+    ./modules/fish.nix
   ];
-
-  # Fish
-  programs = {
-    fish.enable = true;
-  };
 
   # Starship
   programs.starship = {
@@ -44,6 +40,10 @@
     g = "git";
     lg = "lazygit";
     f = "fff";
+    l = "eza -F -s type";
+    la = "eza -F -a";
+    ll = "eza -F -l --no-user -s type";
+    lt = "eza --tree";
   };
   
   # Git
@@ -58,6 +58,23 @@
   home.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "Ubuntu" "UbuntuMono" ]; })
   ];
+
+  # GTK theme
+  gtk = {
+    enable = true;
+    theme.name = "adw-gtk3";
+    cursorTheme.name = "Bibata-Modern";
+    iconTheme.name = "GruvboxPlus";
+  };
+
+  xdg.mimeApps.defaultApplications = {
+    "text/plain" = "nvim.desktop";
+    "applications/pdf" = "zathura.desktop";
+    "image/*" = "feh.desktop";
+    "video/png" = "mpv.desktop";
+    "video/jpg" = "mpv.desktop";
+    "video/*" = "mpv.desktop";
+  };
 
   # Packages
   home.packages = with pkgs; [

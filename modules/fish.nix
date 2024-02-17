@@ -1,3 +1,5 @@
+# TODO install https://github.com/joshmedeski/sesh
+
 { config, lib, pkgs, ... }:
 
 {
