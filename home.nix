@@ -14,24 +14,33 @@
   ];
 
   # Starship
-  programs.starship = {
-    enable = true;
-    enableFishIntegration = true;
-    settings = {
-      username = {
-        style_user = "blue bold";
-        style_root = "red bold";
-        format = "[$user]($style) ";
-        disabled = false;
-        show_always = true;
+  programs = {
+    starship = {
+      enable = true;
+      enableFishIntegration = true;
+      settings = {
+        username = {
+          style_user = "blue bold";
+          style_root = "red bold";
+          format = "[$user]($style) ";
+          disabled = false;
+          show_always = true;
+        };
+        hostname = {
+          ssh_only = false;
+          ssh_symbol = "🌐 ";
+          format = "on [$hostname](bold red) ";
+          trim_at = ".local";
+          disabled = false;
+        };
       };
-      hostname = {
-        ssh_only = false;
-        ssh_symbol = "🌐 ";
-        format = "on [$hostname](bold red) ";
-        trim_at = ".local";
-        disabled = false;
-      };
+    };
+
+    # # Git
+    git = {
+      enable = true;
+      userName = "boticelli";
+      userEmail = "kandelakitina@gmail.com";
     };
   };
 
@@ -46,18 +55,9 @@
     lt = "eza --tree";
   };
   
-  # Git
-  programs.git = {
-    enable = true;
-    userName = "boticelli";
-    userEmail = "kandelakitina@gmail.com";
-  };
 
   # Fonts
   fonts.fontconfig.enable = true;
-  home.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "Ubuntu" "UbuntuMono" ]; })
-  ];
 
   # GTK theme
   gtk = {
@@ -83,6 +83,8 @@
     # alacritty # terminal 
     firefox
     obsidian  # note taking app
+
+    (nerdfonts.override { fonts = [ "Ubuntu" "UbuntuMono" ]; })
 
     # # Utils
     # home-manager    # nix home manager
@@ -152,8 +154,8 @@
   # };
 
   # Name
-  home.username = "${user}";
-  home.homeDirectory = "/home/${user}";
+  home.username = "boticelli";
+  home.homeDirectory = "/home/boticelli";
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
