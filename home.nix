@@ -5,7 +5,7 @@
 # TODO setup fish
 # TODO setup all .config
 
-{ config, pkgs, ... }:
+{ inputs, config, pkgs, ... }:
 
 {
   imports = [
@@ -135,8 +135,8 @@
   # };
 
   # Name
-  home.username = "boticelli";
-  home.homeDirectory = "/home/boticelli";
+  home.username = "${user}";
+  home.homeDirectory = "/home/${user}";
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
