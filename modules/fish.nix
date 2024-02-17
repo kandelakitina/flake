@@ -10,8 +10,16 @@
         cd (cat $XDG_CACHE_HOME/fff/.fff_d)
       '';
     };
-    loginShellInit = ''
+    loginShellInitLast = ''
       echo -e "\e[38;5;196m┏(-_-)┛\e[38;5;27m┗(-_-)┓\e[38;5;226m┗(-_-)┛\e[38;5;118m┏(-_-)┓\e[0m"
     '';
+    plugins = with pkgs.fishPlugins; [ 
+      tide
+      done
+      fzf-fish
+      forgit
+      hydro
+      grc
+    ];
   };
 }
