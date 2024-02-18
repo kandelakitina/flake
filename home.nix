@@ -39,6 +39,7 @@
     # # Git
     git = {
       enable = true;
+      delta.enable = true;
       userName = "boticelli";
       userEmail = "kandelakitina@gmail.com";
     };
@@ -95,6 +96,7 @@
     # cli apps
     bat       # better cat
     btop      # resourese manager
+    delta     # better diff
     eza       # better ls
     lazygit   # git client
     helix     # editor
