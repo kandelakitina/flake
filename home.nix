@@ -11,6 +11,7 @@
   imports = [
     ./modules/alacritty.nix
     ./modules/fish.nix
+    ./modules/tmux.nix
   ];
 
   # Starship
