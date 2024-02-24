@@ -12,7 +12,7 @@
     ./modules/alacritty.nix
     ./modules/fish.nix
     # ./modules/tmux.nix
-    ./modules/zellij.nix
+    # ./modules/zellij.nix
   ];
 
   # Starship

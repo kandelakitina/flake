@@ -23,6 +23,15 @@
       { name = "autopair"; src = pkgs.fishPlugins.autopair.src; }
       # Learn bindings on https://github.com/wfxr/forgit
       { name = "forgit"; src = pkgs.fishPlugins.forgit.src; }
+      # {
+      #   name = "zoxide.fish";
+      #   src = pkgs.fetchFromGitHub {
+      #     owner = "zoxide.fish";
+      #     repo = "kidonng";
+      #     rev = "e0e1b9dfdba362f8ab1ae8c1afc7ccf62b89f7eb";
+      #     sha256 = "0dbnir6jbwjpjalz14snzd3cgdysgcs3raznsijd6savad3qhijc";
+      #   };
+      # }
     ];
   };
 }
