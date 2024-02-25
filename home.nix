@@ -11,6 +11,7 @@
   imports = [
     ./modules/alacritty.nix
     ./modules/fish.nix
+    ./modules/nnn.nix
     # ./modules/tmux.nix
     # ./modules/zellij.nix
   ];
@@ -57,7 +58,13 @@
     ll = "eza -F -l --no-user -s type";
     lt = "eza --tree";
   };
-  
+
+  # Environment
+  home.sessionVariables = {
+    EDITOR = "hx";
+    BROWSER = "firefox";
+    TERMINAL = "alacritty";
+  };
 
   # Fonts
   fonts.fontconfig.enable = true;
@@ -102,9 +109,11 @@
     eza       # better ls
     lazygit   # git client
     helix     # editor
+    joshuto   # file manager
     gh        # github authentificator
     fd        # alternative to find
     fff       # simple file manager
+    felix-fm  # file manager
     fzf       # fuzzy finder
     jq        # JSON formatter
     ripgrep   # better grep

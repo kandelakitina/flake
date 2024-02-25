@@ -10,6 +10,10 @@
       urlview
       continuum
       resurrect
+      tmux-thumbs
+      sensible
+      sidebar
+      sessioninst
     ];
   };
 }
