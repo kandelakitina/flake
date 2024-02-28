@@ -52,7 +52,6 @@
   home.shellAliases = {
     g = "git";
     lg = "lazygit";
-    f = "fff";
     l = "eza -F -s type";
     la = "eza -F -a";
     ll = "eza -F -l --no-user -s type";
