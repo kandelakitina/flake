@@ -13,7 +13,7 @@
     ./modules/fish.nix
     ./modules/nnn.nix
     # ./modules/tmux.nix
-    ./modules/zellij.nix
+    # ./modules/zellij
   ];
 
   # Starship
