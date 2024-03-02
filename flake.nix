@@ -1,6 +1,6 @@
 {                                                                            
 
-  description = "boticelli's first flake";                                        
+  description = "boticelli's second flake";                                        
                                                                              
   # inputs are like channels for flake files
   inputs = {
@@ -27,7 +27,10 @@
       
       # This bit is instead of writing out for each system:
       # pkgs = nixpkgs.legacyPackages.x86_64_linux;
-      systems = ["x86_64-linux" ];
+      systems = ["x86_64-linux"];
+
+      # This is a definitions of a  helper function, 
+      # which applies arguments to lists of systems (above)
       forEachSystem = f: lib.genAttrs systems (sys: f pkgsFor.${sys});
       pkgsFor = nixpkgs.legacyPackages;
 
@@ -52,50 +55,54 @@
       # add `lib` into outputs scope
       inherit lib;
 
-      nixosModules = import ./modules/nixos;
-      homeManagerModules = import ./modules/home-manager;
+      # linking additional config files for system and user
+
+      # nixosModules = import ./modules/nixos;
+      # homeManagerModules = import ./modules/home-manager;
+
+      # An overlay in Nix is a way to add, modify, or remove
+      # packages from the Nix package set. Overlays are functions
+      # that take two arguments: the original package set
+      # and a set of functions from the Nix library. 
+      # The `inherit` bit passes down inputs and outputs from this
+      # file to files in ./overlays 
+      # - `inputs` comes from `@inputs` above
+      # - `outputs` comes from `inherit (self) outputs`
+
+      # overlays = import ./overlays {inherit inputs outputs;};
+     
+
+      # this imports packages and devShells for every system
+
+      # packages = forEachSystem (pkgs: import ./pkgs {inherit pkgs;});
+      # devShells = forEachSystem (pkgs: import ./shell.nix {inherit pkgs inputs;});
 
       # this has to have "Configuration" in 
       # it's name to be usable by flake
       nixosConfigurations = {
 
-        # user name is used when building a flake  
-        ${user} = lib.nixosSystem {
-          inherit systems pkgs;
-          modules = [
-            ./configuration.nix 
+        # name of system config
+        venice = lib.nixosSystem {
 
-            # Adding home-manager as a NixOS system config module
-            home-manager.nixosModules.home-manager {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.${user} = {
-                imports = [ ./home.nix ];
-                # TODO fix
-                # specialArgs = { inherit system user; };
-              };
-            }
-        
-          ];
+          # refers to a difference file for actual config
+          modules = [./hosts/venice/configuration.nix];
+
+          # passed does `inputs` and `outputs` variables
+          specialArgs = {inherit inputs outputs;};
         };
-
-
-        #<second user> = lib.nixosSystem {
-        #inherit system;
-        #modules = [ ./configuration.nix ];
-        #};
-
       };
 
-      # # This configues home-manager config
-      # # Should allow to run 'home-manager switch`
-      # # TODO: try uncommenting it with nixos-unstable in input
-      # homeConfigurations = {
-      #   ${user} = home-manager.lib.homeManagerConfiguration {
-      #     inherit pkgs;
-      #     modules = [ ./home.nix ];
-      #   };
-      # };
+      # home manager (user-wide) congifs
+      homeConfigurations = {
+        venice = lib.homeManagerConfiguration {
+          modules = [./hosts/venice/home.nix];
 
+          # bind `pkgs` variable
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+
+          # passes down variables
+          extraSpecialArgs = {inherit inputs outputs;};
+        };
     };
-}   
+  };
+}
