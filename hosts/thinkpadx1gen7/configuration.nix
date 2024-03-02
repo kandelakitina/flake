@@ -1,8 +1,32 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
+{
+  inputs,
+  pkgs,
+  lib,
+  ...
+}: {
+  imports = [
 
-{ config, pkgs, ... }:
+    # this uses git:NixOS/nixos-hardware module to import settings
+    # `inputs.hardware.nixosModules` refers to `inputs` (see above)
+    # `inputs` are passed down here from flake.nix
+    # inputs in flake.nix contains `hardware` modules and a url
+
+    # models can be found here:
+    # https://github.com/NixOS/nixos-hardware/blob/master/flake.nix
+    inputs.hardware.nixosModules.lenovo-thinkpad-x1-7th-gen
+
+    ./hardware-configuration.nix
+
+    # this is for disko partition manager
+    # ./disks.nix
+
+    # ../../nixos
+    #../../nixos/optional/egpu.nix
+
+    # TODO: importing user settings
+    # ../../nixos/users/boticelli.nix
+  ];
+
 
 let
   user = "boticelli";

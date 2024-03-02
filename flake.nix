@@ -7,6 +7,9 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    # provides handy helpers for configuration.nix
+    hardware.url = "github:nixos/nixos-hardware";
   };
 
   # Outputs is what is produced from inputs
@@ -82,10 +85,10 @@
       nixosConfigurations = {
 
         # name of system config
-        venice = lib.nixosSystem {
+        thinkpadx1gen7 = lib.nixosSystem {
 
           # refers to a difference file for actual config
-          modules = [./hosts/venice/configuration.nix];
+          modules = [./hosts/thinkpadx1gen7/configuration.nix];
 
           # passed does `inputs` and `outputs` variables
           specialArgs = {inherit inputs outputs;};
@@ -94,8 +97,8 @@
 
       # home manager (user-wide) congifs
       homeConfigurations = {
-        venice = lib.homeManagerConfiguration {
-          modules = [./hosts/venice/home.nix];
+        thinkpadx1gen7 = lib.homeManagerConfiguration {
+          modules = [./hosts/thinkpadx1gen7/home.nix];
 
           # bind `pkgs` variable
           pkgs = nixpkgs.legacyPackages.x86_64-linux;

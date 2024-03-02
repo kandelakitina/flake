@@ -9,11 +9,11 @@
 
 {
   imports = [
-    ./modules/alacritty.nix
-    ./modules/fish.nix
-    ./modules/nnn.nix
+    ./../../modules/alacritty.nix
+    ./../../modules/fish.nix
+    ./../../modules/nnn.nix
     # ./modules/tmux.nix
-    ./modules/zellij.nix
+    ./../../modules/zellij.nix
   ];
 
   # Starship
