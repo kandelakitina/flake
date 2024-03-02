@@ -9,38 +9,59 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  # outputs is where we configure `inputs`
-  outputs = { self, nixpkgs, home-manager, ... }:
+  # Outputs is what is produced from inputs
+  # `self` is this document.
+  # We bind variables to `@inputs` so that they will be available like `inputs.self.lib`.
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
 
-    # define some variables for the ease of use
+    # with `let .. in` we define variables
     let
-      system = "x86_64-linux";
+
+      # `self` is this document. It has `outputs`
+      # Line below allows referring it outputs without `self`
+      # the same like `outputs = self.outputs`
+      inherit (self) outputs;
+
+      # binds 'lib' to two sources
+      lib = nixpkgs.lib // home-manager.lib;
+      
+      # This bit is instead of writing out for each system:
+      # pkgs = nixpkgs.legacyPackages.x86_64_linux;
+      systems = ["x86_64-linux" ];
+      forEachSystem = f: lib.genAttrs systems (sys: f pkgsFor.${sys});
+      pkgsFor = nixpkgs.legacyPackages;
+
       user = "boticelli";
 
-      pkgs = import nixpkgs {
+      # pkgs = import nixpkgs {
 
-        # takes nixpkgs path from the system
-        inherit system;
+      #   # takes nixpkgs path from the system
+      #   inherit systems;
 
-        # # use proprietory soft
-        config = {
-          allowUnfree = true;
-          permittedInsecurePackages = [
-            "electron-25.9.0"
-          ];
-        };
-      };
-
-      lib = nixpkgs.lib;
+      #   # # use proprietory soft
+      #   config = {
+      #     allowUnfree = true;
+      #     permittedInsecurePackages = [
+      #       "electron-25.9.0"
+      #     ];
+      #   };
+      # };
 
     in {
+
+      # add `lib` into outputs scope
+      inherit lib;
+
+      nixosModules = import ./modules/nixos;
+      homeManagerModules = import ./modules/home-manager;
+
       # this has to have "Configuration" in 
       # it's name to be usable by flake
       nixosConfigurations = {
 
         # user name is used when building a flake  
         ${user} = lib.nixosSystem {
-          inherit system pkgs;
+          inherit systems pkgs;
           modules = [
             ./configuration.nix 
 
