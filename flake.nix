@@ -32,7 +32,7 @@
       # pkgs = nixpkgs.legacyPackages.x86_64_linux;
       systems = ["x86_64-linux"];
 
-      # This is a definitions of a  helper function, 
+      # This is a definition of a  helper function, 
       # which applies arguments to lists of systems (above)
       forEachSystem = f: lib.genAttrs systems (sys: f pkgsFor.${sys});
       pkgsFor = nixpkgs.legacyPackages;
@@ -55,7 +55,7 @@
 
     in {
 
-      # add `lib` into outputs scope
+      # add `lib` from above into outputs scope
       inherit lib;
 
       # linking additional config files for system and user

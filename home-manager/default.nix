@@ -12,7 +12,7 @@
       # inputs.nixvim.homeManagerModules.nixvim
       # inputs.impermanence.nixosModules.home-manager.impermanence
 
-      # ./programs
+      ./programs
       # ./scripts.nix
 
       # ./browsers/firefox.nix

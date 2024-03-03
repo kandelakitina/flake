@@ -118,7 +118,7 @@ in {
       };
 
       functions = {
-        fish_greeting = '''';
+        fish_greeting = ''test greeting'';
 
         envsource = ''
           for line in (cat $argv | grep -v '^#')
