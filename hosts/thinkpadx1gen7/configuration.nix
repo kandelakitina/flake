@@ -13,7 +13,7 @@
 
     # models can be found here:
     # https://github.com/NixOS/nixos-hardware/blob/master/flake.nix
-    inputs.hardware.nixosModules.lenovo-thinkpad-x1-7th-gen
+    # inputs.hardware.nixosModules.lenovo-thinkpad-x1-7th-gen
 
     ./hardware-configuration.nix
 
@@ -24,7 +24,7 @@
     #../../nixos/optional/egpu.nix
 
     # TODO: importing user settings
-    # ../../nixos/users/boticelli.nix
+    ../../nixos/users/boticelli.nix
   ];
 
   networking = {
