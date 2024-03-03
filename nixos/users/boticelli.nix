@@ -5,9 +5,8 @@
 }: let
   ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
 in {
-  home-manager.users.boticelli = import ../../hosts/${config.networking.hostName}/home.nix;
+  # home-manager.users.boticelli = import ../../hosts/${config.networking.hostName}/home.nix;
 
-  # # TODO: add secrets management
   # sops.secrets.boticelli-password = {
   #   sopsFile = ./secrets.yaml;
   #   neededForUsers = true;

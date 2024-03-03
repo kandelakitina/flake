@@ -7,8 +7,8 @@
 }: {
   imports = [
     ../../home-manager
-    ../../home-manager/programs/gaming.nix
-    ../../home-manager/programs/discord
+    # ../../home-manager/programs/gaming.nix
+    # ../../home-manager/programs/discord
   ];
 
   config = {
@@ -40,7 +40,7 @@
 
     my.settings = {
       wallpaper = "~/dotfiles/home-manager/wallpapers/Kurzgesagt-Galaxy_3.png";
-      host = "framework";
+      host = "thinkpadx1gen7";
       default = {
         shell = "${pkgs.fish}/bin/fish";
         terminal = "wezterm";

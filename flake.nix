@@ -1,111 +1,81 @@
-{                                                                            
+{
+  description = "My Nix Config";
 
-  description = "boticelli's second flake";                                        
-                                                                             
-  # inputs are like channels for flake files
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    # provides handy helpers for configuration.nix
+    # disko.url = "github:nix-community/disko";
     hardware.url = "github:nixos/nixos-hardware";
+    # sops-nix.url = "github:mic92/sops-nix";
+    # impermanence.url = "github:nix-community/impermanence";
+    # lanzaboote.url = "github:nix-community/lanzaboote";
+
+    # nixgl.url = "github:nix-community/nixGL";
+    # nix-colors.url = "github:misterio77/nix-colors";
+
+    # hypr-contrib.url = "github:hyprwm/contrib";
+    # hyprland-nix.url = "github:spikespaz/hyprland-nix";
+    # neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    # nixvim.url = "github:pta2002/nixvim";
+    # nixneovimplugins.url = "github:jooooscha/nixpkgs-vim-extra-plugins";
+    # zjstatus.url = "github:dj95/zjstatus";
+
+    # nwg-displays.url = "github:nwg-piotr/nwg-displays";
+    # comma.url = "github:nix-community/comma";
+    # nix-gaming.url = "github:fufexan/nix-gaming";
+
+    # firefox-gnome-theme = {
+    #   url = "github:rafaelmardojai/firefox-gnome-theme";
+    #   flake = false;
+    # };
   };
 
-  # Outputs is what is produced from inputs
-  # `self` is this document.
-  # We bind variables to `@inputs` so that they will be available like `inputs.self.lib`.
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    ...
+  } @ inputs: let
+    inherit (self) outputs;
+    lib = nixpkgs.lib // home-manager.lib;
+    systems = ["x86_64-linux"];
+    forEachSystem = f: lib.genAttrs systems (sys: f pkgsFor.${sys});
+    pkgsFor = nixpkgs.legacyPackages;
+  in {
+    inherit lib;
+    # nixosModules = import ./modules/nixos;
+    # homeManagerModules = import ./modules/home-manager;
+    # overlays = import ./overlays {inherit inputs outputs;};
+    # packages = forEachSystem (pkgs: import ./pkgs {inherit pkgs;});
+    # devShells = forEachSystem (pkgs: import ./shell.nix {inherit pkgs inputs;});
 
-    # with `let .. in` we define variables
-    let
-
-      # `self` is this document. It has `outputs`
-      # Line below allows referring it outputs without `self`
-      # the same like `outputs = self.outputs`
-      inherit (self) outputs;
-
-      # binds 'lib' to two sources
-      lib = nixpkgs.lib // home-manager.lib;
-      
-      # This bit is instead of writing out for each system:
-      # pkgs = nixpkgs.legacyPackages.x86_64_linux;
-      systems = ["x86_64-linux"];
-
-      # This is a definition of a  helper function, 
-      # which applies arguments to lists of systems (above)
-      forEachSystem = f: lib.genAttrs systems (sys: f pkgsFor.${sys});
-      pkgsFor = nixpkgs.legacyPackages;
-
-      user = "boticelli";
-
-      # pkgs = import nixpkgs {
-
-      #   # takes nixpkgs path from the system
-      #   inherit systems;
-
-      #   # # use proprietory soft
-      #   config = {
-      #     allowUnfree = true;
-      #     permittedInsecurePackages = [
-      #       "electron-25.9.0"
-      #     ];
-      #   };
+    nixosConfigurations = {
+      # iso = lib.nixosSystem {
+      #   modules = [
+      #     "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-graphical-gnome.nix"
+      #     "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
+      #     ./hosts/iso/configuration.nix
+      #   ];
+      #   specialArgs = {inherit inputs outputs;};
       # };
 
-    in {
+      thinkpadx1gen7 = lib.nixosSystem {
+        modules = [./hosts/thinkpadx1gen7/configuration.nix];
+        specialArgs = {inherit inputs outputs;};
+      };
+    };
 
-      # add `lib` from above into outputs scope
-      inherit lib;
-
-      # linking additional config files for system and user
-
-      # nixosModules = import ./modules/nixos;
-      # homeManagerModules = import ./modules/home-manager;
-
-      # An overlay in Nix is a way to add, modify, or remove
-      # packages from the Nix package set. Overlays are functions
-      # that take two arguments: the original package set
-      # and a set of functions from the Nix library. 
-      # The `inherit` bit passes down inputs and outputs from this
-      # file to files in ./overlays 
-      # - `inputs` comes from `@inputs` above
-      # - `outputs` comes from `inherit (self) outputs`
-
-      # overlays = import ./overlays {inherit inputs outputs;};
-     
-
-      # this imports packages and devShells for every system
-
-      # packages = forEachSystem (pkgs: import ./pkgs {inherit pkgs;});
-      # devShells = forEachSystem (pkgs: import ./shell.nix {inherit pkgs inputs;});
-
-      # this has to have "Configuration" in 
-      # it's name to be usable by flake
-      nixosConfigurations = {
-
-        # name of system config
-        thinkpadx1gen7 = lib.nixosSystem {
-
-          # refers to a difference file for actual config
-          modules = [./hosts/thinkpadx1gen7/configuration.nix];
-
-          # passed does `inputs` and `outputs` variables
-          specialArgs = {inherit inputs outputs;};
-        };
+    homeConfigurations = {
+      thinkpadx1gen7 = lib.homeManagerConfiguration {
+        modules = [./hosts/thinkpadx1gen7/home.nix];
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        extraSpecialArgs = {inherit inputs outputs;};
       };
 
-      # home manager (user-wide) congifs
-      homeConfigurations = {
-        thinkpadx1gen7 = lib.homeManagerConfiguration {
-          modules = [./hosts/thinkpadx1gen7/home.nix];
-
-          # bind `pkgs` variable
-          pkgs = nixpkgs.legacyPackages.x86_64-linux;
-
-          # passes down variables
-          extraSpecialArgs = {inherit inputs outputs;};
-        };
     };
   };
 }

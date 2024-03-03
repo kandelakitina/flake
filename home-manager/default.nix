@@ -8,31 +8,31 @@
 }: {
   imports =
     [
-      # inputs.nix-colors.homeManagerModule
-      # inputs.nixvim.homeManagerModules.nixvim
-      # inputs.impermanence.nixosModules.home-manager.impermanence
+      inputs.nix-colors.homeManagerModule
+      inputs.nixvim.homeManagerModules.nixvim
+      inputs.impermanence.nixosModules.home-manager.impermanence
 
       ./programs
-      # ./scripts.nix
+      ./scripts.nix
 
-      # ./browsers/firefox.nix
+      ./browsers/firefox.nix
 
-      # ./editors/nvim
+      ./editors/nvim
 
-      # ./multiplexers/tmux.nix
-      # ./multiplexers/zellij
+      ./multiplexers/tmux.nix
+      ./multiplexers/zellij
 
-      # ./desktops/hyprland
+      ./desktops/hyprland
 
       ./shells/fish.nix
-      # ./shells/nushell.nix
-      # ./shells/zsh.nix
+      ./shells/nushell.nix
+      ./shells/zsh.nix
 
-      # ./terminals/alacritty.nix
-      # ./terminals/foot.nix
-      # ./terminals/wezterm
+      ./terminals/alacritty.nix
+      ./terminals/foot.nix
+      ./terminals/wezterm
 
-      # ./security/sops.nix
+      ./security/sops.nix
     ]
     ++ builtins.attrValues outputs.homeManagerModules;
 
@@ -45,14 +45,13 @@
   home.sessionVariables.EDITOR = config.my.settings.default.editor;
 
   nixpkgs = {
-    # TODO: turn on overlays
-    # overlays =
-    #   builtins.attrValues outputs.overlays
-    #   ++ [
-    #     inputs.nixneovimplugins.overlays.default
-    #     inputs.neovim-nightly-overlay.overlay
-    #     inputs.nixgl.overlay
-    #   ];
+    overlays =
+      builtins.attrValues outputs.overlays
+      ++ [
+        inputs.nixneovimplugins.overlays.default
+        inputs.neovim-nightly-overlay.overlay
+        inputs.nixgl.overlay
+      ];
 
     config = {
       allowUnfree = true;
@@ -60,13 +59,12 @@
     };
   };
 
-  # TODO: Turn on openGL
-  # home.packages = [pkgs.nixgl.nixGLIntel];
+  home.packages = [pkgs.nixgl.nixGLIntel];
 
   nix = {
     package = lib.mkDefault pkgs.nix;
     settings = {
-      substituters = [
+      trusted-substituters = [
         "https://cache.nixos.org"
         "https://nix-community.cachix.org"
       ];
@@ -74,14 +72,6 @@
       trusted-public-keys = [
         "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      ];
-
-      extra-substituters = [
-        "https://cache.floxdev.com"
-      ];
-
-      extra-trusted-public-keys = [
-        "flox-store-public-0:8c/B+kjIaQ+BloCmNkRUKwaVPFWkriSAd0JJvuDu4F0="
       ];
 
       experimental-features = ["nix-command" "flakes" "repl-flake"];

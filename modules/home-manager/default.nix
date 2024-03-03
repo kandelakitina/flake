@@ -1,5 +1,3 @@
 {
-
-# add extra home manager modules
-  
+  settings = import ./my-settings.nix;
 }
