@@ -27,18 +27,32 @@
     # ../../nixos/users/boticelli.nix
   ];
 
+  networking = {
+    hostName = "thinkpadx1gen7";
+  };
 
-let
-  user = "boticelli";
-  version = "23.11";
-in
+  # # Modules come from nixos.pkgs
+  # modules.nixos = {
+  #   avahi.enable = true;
+  #   auto-hibernate.enable = false;
+  #   backup.enable = true;
+  #   bluetooth.enable = true;
+  #   docker.enable = true;
+  #   fingerprint.enable = true;
+  #   gaming.enable = true;
+  #   login.enable = true;
+  #   extraSecurity.enable = true;
+  #   power.enable = true;
+  #   virtualisation.enable = true;
+  #   vpn.enable = true;
+  # };
 
-{
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      # <home-manager/nixos>
-    ];
+  # # some headset app
+  # environment.systemPackages = with pkgs; [
+  #   headsetcontrol2
+  #   headset-charge-indicator
+  # ];
+  # services.udev.packages = [pkgs.headsetcontrol2];
  
   # nixpkgs.config.allowUnfree = true;
 
@@ -70,7 +84,6 @@ in
     };
   };
 
-  networking.hostName = "nixos"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
@@ -148,7 +161,7 @@ in
 
   # Define a user account. 
   # Don't forget to set a password with ‘passwd’.
-  users.users.${user}= {
+  users.users.boticelli = {
     isNormalUser = true;
     shell = pkgs.fish; # set default shell
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
@@ -203,7 +216,7 @@ in
   # system.copySystemConfiguration = true;
 
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "${version}"; # Did you read the comment?
+  system.stateVersion = "23.11"; # Did you read the comment?
 
   # FLAKES
   # ------
