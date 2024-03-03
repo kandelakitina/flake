@@ -8,50 +8,50 @@
 }: {
   imports =
     [
-      inputs.nix-colors.homeManagerModule
-      inputs.nixvim.homeManagerModules.nixvim
-      inputs.impermanence.nixosModules.home-manager.impermanence
+    #  inputs.nix-colors.homeManagerModule
+    #  inputs.nixvim.homeManagerModules.nixvim
+    #  inputs.impermanence.nixosModules.home-manager.impermanence
 
-      ./programs
-      ./scripts.nix
+    #  ./programs
+    #  ./scripts.nix
 
-      ./browsers/firefox.nix
+    #  ./browsers/firefox.nix
 
-      ./editors/nvim
+    #  ./editors/nvim
 
-      ./multiplexers/tmux.nix
-      ./multiplexers/zellij
+    #  ./multiplexers/tmux.nix
+    #  ./multiplexers/zellij
 
-      ./desktops/hyprland
+    #  ./desktops/hyprland
 
-      ./shells/fish.nix
-      ./shells/nushell.nix
-      ./shells/zsh.nix
+    #  ./shells/fish.nix
+    #  ./shells/nushell.nix
+    #  ./shells/zsh.nix
 
-      ./terminals/alacritty.nix
-      ./terminals/foot.nix
-      ./terminals/wezterm
+    #  ./terminals/alacritty.nix
+    #  ./terminals/foot.nix
+    #  ./terminals/wezterm
 
-      ./security/sops.nix
+    #  ./security/sops.nix
     ]
-    ++ builtins.attrValues outputs.homeManagerModules;
-
+    #  ++ builtins.attrValues outputs.homeManagerModules;
+  ;
   systemd.user.startServices = "sd-switch";
 
   programs = {
     home-manager.enable = true;
   };
 
-  home.sessionVariables.EDITOR = config.my.settings.default.editor;
+ #  home.sessionVariables.EDITOR = config.my.settings.default.editor;
 
   nixpkgs = {
-    overlays =
-      builtins.attrValues outputs.overlays
-      ++ [
-        inputs.nixneovimplugins.overlays.default
-        inputs.neovim-nightly-overlay.overlay
-        inputs.nixgl.overlay
-      ];
+    # overlays =
+    #  builtins.attrValues outputs.overlays
+    #  ++ [
+    #    inputs.nixneovimplugins.overlays.default
+    #    inputs.neovim-nightly-overlay.overlay
+    #    inputs.nixgl.overlay
+    #  ];
 
     config = {
       allowUnfree = true;
@@ -59,7 +59,7 @@
     };
   };
 
-  home.packages = [pkgs.nixgl.nixGLIntel];
+  # home.packages = [pkgs.nixgl.nixGLIntel];
 
   nix = {
     package = lib.mkDefault pkgs.nix;

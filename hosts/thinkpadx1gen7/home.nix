@@ -6,50 +6,50 @@
   ...
 }: {
   imports = [
-    ../../home-manager
+     ../../home-manager
     # ../../home-manager/programs/gaming.nix
     # ../../home-manager/programs/discord
   ];
 
   config = {
-    modules = {
-      browsers = {
-        firefox.enable = true;
-      };
+  #  modules = {
+  #    browsers = {
+  #      firefox.enable = true;
+  #    };
 
-      editors = {
-        nvim.enable = true;
-      };
+  #    editors = {
+  #      nvim.enable = true;
+  #    };
 
-      multiplexers = {
-        zellij.enable = true;
-      };
+  #    multiplexers = {
+  #      zellij.enable = true;
+  #    };
 
-      shells = {
-        fish.enable = true;
-      };
+  #    shells = {
+  #      fish.enable = true;
+  #    };
 
-      wms = {
-        hyprland.enable = true;
-      };
+  #    wms = {
+  #      hyprland.enable = true;
+  #    };
 
-      terminals = {
-        wezterm.enable = true;
-      };
-    };
+  #    terminals = {
+  #      wezterm.enable = true;
+  #    };
+  #  };
 
-    my.settings = {
-      wallpaper = "~/dotfiles/home-manager/wallpapers/Kurzgesagt-Galaxy_3.png";
-      host = "thinkpadx1gen7";
-      default = {
-        shell = "${pkgs.fish}/bin/fish";
-        terminal = "wezterm";
-        browser = "firefox";
-        editor = "nvim";
-      };
-    };
+  #  my.settings = {
+  #    wallpaper = "~/dotfiles/home-manager/wallpapers/Kurzgesagt-Galaxy_3.png";
+  #    host = "thinkpadx1gen7";
+  #    default = {
+  #      shell = "${pkgs.fish}/bin/fish";
+  #      terminal = "wezterm";
+  #      browser = "firefox";
+  #      editor = "nvim";
+  #    };
+  #  };
 
-    colorscheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
+  #  colorscheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
 
     home = {
       username = lib.mkDefault "boticelli";
