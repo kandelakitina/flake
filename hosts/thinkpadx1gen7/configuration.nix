@@ -9,7 +9,7 @@
     ./hardware-configuration.nix
     # ./disks.nix
 
-    # ../../nixos
+    ../../nixos
     #../../nixos/optional/egpu.nix
     ../../nixos/users/boticelli.nix
   ];

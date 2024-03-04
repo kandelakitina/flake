@@ -47,9 +47,9 @@
     pkgsFor = nixpkgs.legacyPackages;
   in {
     inherit lib;
-    # nixosModules = import ./modules/nixos;
+    nixosModules = import ./modules/nixos;
     homeManagerModules = import ./modules/home-manager;
-    # overlays = import ./overlays {inherit inputs outputs;};
+    overlays = import ./overlays {inherit inputs outputs;};
     # packages = forEachSystem (pkgs: import ./pkgs {inherit pkgs;});
     # devShells = forEachSystem (pkgs: import ./shell.nix {inherit pkgs inputs;});
 
