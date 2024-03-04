@@ -34,8 +34,8 @@
 
     #  ./security/sops.nix
     ]
-    #  ++ builtins.attrValues outputs.homeManagerModules;
-  ;
+     ++ builtins.attrValues outputs.homeManagerModules;
+
   systemd.user.startServices = "sd-switch";
 
   programs = {

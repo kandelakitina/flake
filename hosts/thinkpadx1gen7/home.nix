@@ -38,16 +38,16 @@
   #    };
   #  };
 
-  #  my.settings = {
-  #    wallpaper = "~/dotfiles/home-manager/wallpapers/Kurzgesagt-Galaxy_3.png";
-  #    host = "thinkpadx1gen7";
-  #    default = {
-  #      shell = "${pkgs.fish}/bin/fish";
-  #      terminal = "wezterm";
-  #      browser = "firefox";
-  #      editor = "nvim";
-  #    };
-  #  };
+   my.settings = {
+     wallpaper = "~/dotfiles/home-manager/wallpapers/Kurzgesagt-Galaxy_3.png";
+     host = "thinkpadx1gen7";
+     default = {
+       shell = "${pkgs.fish}/bin/fish";
+       terminal = "wezterm";
+       browser = "firefox";
+       editor = "nvim";
+     };
+   };
 
   #  colorscheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
 
