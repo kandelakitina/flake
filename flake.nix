@@ -14,7 +14,7 @@
     # impermanence.url = "github:nix-community/impermanence";
     # lanzaboote.url = "github:nix-community/lanzaboote";
 
-    # nixgl.url = "github:nix-community/nixGL";
+    nixgl.url = "github:nix-community/nixGL";
     nix-colors.url = "github:misterio77/nix-colors";
 
     hypr-contrib.url = "github:hyprwm/contrib";

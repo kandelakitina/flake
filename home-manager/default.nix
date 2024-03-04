@@ -45,13 +45,13 @@
  #  home.sessionVariables.EDITOR = config.my.settings.default.editor;
 
   nixpkgs = {
-    # overlays =
-    #  builtins.attrValues outputs.overlays
-    #  ++ [
+    overlays =
+     builtins.attrValues outputs.overlays
+     ++ [
     #    inputs.nixneovimplugins.overlays.default
     #    inputs.neovim-nightly-overlay.overlay
-    #    inputs.nixgl.overlay
-    #  ];
+       inputs.nixgl.overlay
+     ];
 
     config = {
       allowUnfree = true;
@@ -59,7 +59,7 @@
     };
   };
 
-  # home.packages = [pkgs.nixgl.nixGLIntel];
+  home.packages = [pkgs.nixgl.nixGLIntel];
 
   nix = {
     package = lib.mkDefault pkgs.nix;
