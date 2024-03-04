@@ -15,16 +15,16 @@
     # lanzaboote.url = "github:nix-community/lanzaboote";
 
     # nixgl.url = "github:nix-community/nixGL";
-    # nix-colors.url = "github:misterio77/nix-colors";
+    nix-colors.url = "github:misterio77/nix-colors";
 
-    # hypr-contrib.url = "github:hyprwm/contrib";
-    # hyprland-nix.url = "github:spikespaz/hyprland-nix";
+    hypr-contrib.url = "github:hyprwm/contrib";
+    hyprland-nix.url = "github:spikespaz/hyprland-nix";
     # neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     # nixvim.url = "github:pta2002/nixvim";
     # nixneovimplugins.url = "github:jooooscha/nixpkgs-vim-extra-plugins";
     # zjstatus.url = "github:dj95/zjstatus";
 
-    # nwg-displays.url = "github:nwg-piotr/nwg-displays";
+    nwg-displays.url = "github:nwg-piotr/nwg-displays";
     # comma.url = "github:nix-community/comma";
     # nix-gaming.url = "github:fufexan/nix-gaming";
 

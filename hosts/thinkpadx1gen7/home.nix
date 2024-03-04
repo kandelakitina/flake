@@ -12,31 +12,31 @@
   ];
 
   config = {
-  #  modules = {
-  #    browsers = {
-  #      firefox.enable = true;
-  #    };
+   modules = {
+     # browsers = {
+     #   firefox.enable = true;
+     # };
 
-  #    editors = {
-  #      nvim.enable = true;
-  #    };
+     # editors = {
+     #   nvim.enable = true;
+     # };
 
-  #    multiplexers = {
-  #      zellij.enable = true;
-  #    };
+     # multiplexers = {
+     #   zellij.enable = true;
+     # };
 
-  #    shells = {
-  #      fish.enable = true;
-  #    };
+     # shells = {
+     #   fish.enable = true;
+     # };
 
-  #    wms = {
-  #      hyprland.enable = true;
-  #    };
+     wms = {
+       hyprland.enable = true;
+     };
 
-  #    terminals = {
-  #      wezterm.enable = true;
-  #    };
-  #  };
+     # terminals = {
+     #   wezterm.enable = true;
+     # };
+   };
 
    my.settings = {
      wallpaper = "~/dotfiles/home-manager/wallpapers/Kurzgesagt-Galaxy_3.png";
@@ -49,7 +49,7 @@
      };
    };
 
-  #  colorscheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
+   colorscheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
 
     home = {
       username = lib.mkDefault "boticelli";

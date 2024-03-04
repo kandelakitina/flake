@@ -8,7 +8,7 @@
 }: {
   imports =
     [
-    #  inputs.nix-colors.homeManagerModule
+     inputs.nix-colors.homeManagerModule
     #  inputs.nixvim.homeManagerModules.nixvim
     #  inputs.impermanence.nixosModules.home-manager.impermanence
 
@@ -22,7 +22,7 @@
     #  ./multiplexers/tmux.nix
     #  ./multiplexers/zellij
 
-    #  ./desktops/hyprland
+     ./desktops/hyprland
 
     #  ./shells/fish.nix
     #  ./shells/nushell.nix

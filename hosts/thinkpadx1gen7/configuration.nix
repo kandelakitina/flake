@@ -18,7 +18,7 @@
     hostName = "thinkpadx1gen7";
   };
 
-  # modules.nixos = {
+  modules.nixos = {
   #   avahi.enable = true;
   #   auto-hibernate.enable = false;
   #   backup.enable = true;
@@ -29,9 +29,9 @@
   #   login.enable = true;
   #   extraSecurity.enable = true;
   #   power.enable = true;
-  #   virtualisation.enable = true;
+    virtualisation.enable = true;
   #   vpn.enable = true;
-  # };
+  };
 
   # environment.systemPackages = with pkgs; [
   #   headsetcontrol2
