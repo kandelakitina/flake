@@ -29,7 +29,7 @@
       # ./optional/hardening.nix
       # ./optional/fingerprint.nix
       # ./optional/greetd.nix
-      # # ./optional/gaming.nix
+      # ./optional/gaming.nix
       # ./optional/power.nix
       # ./optional/virtualisation.nix
       # ./optional/vpn.nix
